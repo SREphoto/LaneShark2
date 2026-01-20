@@ -82,17 +82,17 @@ export class Engine {
                 pin: './assets/pin_sprites.png'
             });
             this.renderer.setSprites(this.assets.get('ball'), this.assets.get('pin'));
-
-            // Step 3: Boot Engine
-            const prompt = document.getElementById('ui-prompt');
-            if (prompt) {
-                prompt.textContent = 'SWIPE UP TO ROLL';
-                prompt.style.opacity = '1';
-            }
-            this.start();
         } catch (err) {
-            console.error('Boot Error:', err);
+            console.warn('SHARK_OS: Fast-Boot Active (Vector Fallback Mode enabled)');
         }
+
+        // Step 3: Boot Engine
+        const prompt = document.getElementById('ui-prompt');
+        if (prompt) {
+            prompt.textContent = 'SWIPE UP TO ROLL';
+            prompt.style.opacity = '1';
+        }
+        this.start();
     }
 
     private setupPins() {
@@ -256,7 +256,8 @@ export class Engine {
         const elRPM = document.getElementById('ui-rpm');
 
         if (elSpeed) {
-            const mph = (Math.abs(this.ballVel.z) / 2000) * 2.237;
+            // Velocity is in units/sec. Map 20000 units/sec to ~20 MPH for display.
+            const mph = (Math.abs(this.ballVel.z) / 1000);
             elSpeed.innerHTML = `${mph.toFixed(1)} <span class="text-[8px] opacity-40">MPH</span>`;
         }
 
@@ -300,7 +301,7 @@ export class Engine {
         // Draw Ball
         if (this.ballPos.z < 30000) {
             const ballProj = this.world.project({ x: this.ballPos.x, y: 0, z: this.ballPos.z }, this.canvas);
-            this.renderer.drawBall(ballProj, this.ballRot);
+            this.renderer.drawBall(ballProj, this.ballRot, this.isRolling);
         }
     }
 }

@@ -76,7 +76,8 @@
         <div class="flex gap-4">
           <button id="btn-show-score"
             class="glass-button text-[10px] tracking-widest px-4 py-2 border-purple-500/30">SCORECARD</button>
-          <button id="btn-open-creator" class="glass-button text-[10px] tracking-widest px-4 py-2 border-emerald-500/30">CHARACTER FORGE</button>
+          <button id="btn-open-creator"
+            class="glass-button text-[10px] tracking-widest px-4 py-2 border-emerald-500/30">CHARACTER FORGE</button>
           <button id="btn-show-shop" class="glass-button text-[10px] tracking-widest px-4 py-2 border-blue-500/30">PRO
             SHOP</button>
         </div>
@@ -162,20 +163,20 @@
             <h3 class="hud-label mb-4">Body Configuration</h3>
             <div class="space-y-6">
               <div class="flex flex-col gap-2">
-                <div class="flex justify-between text-[10px] font-bold tracking-widest mb-1">
+                <label for="mass-slider" class="flex justify-between text-[10px] font-bold tracking-widest mb-1">
                   <span>BUILD_MASS</span>
                   <span id="val-build-mass">50%</span>
-                </div>
-                <input type="range"
+                </label>
+                <input type="range" id="mass-slider" title="Mass Slider"
                   class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-purple-500" min="0"
                   max="100" value="50">
               </div>
               <div class="flex flex-col gap-2">
-                <div class="flex justify-between text-[10px] font-bold tracking-widest mb-1">
+                <label for="height-slider" class="flex justify-between text-[10px] font-bold tracking-widest mb-1">
                   <span>HEIGHT_FACTOR</span>
                   <span id="val-height">1.0x</span>
-                </div>
-                <input type="range"
+                </label>
+                <input type="range" id="height-slider" title="Height Slider"
                   class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-purple-500" min="80"
                   max="120" value="100">
               </div>
@@ -189,22 +190,22 @@
               <div class="glass-panel p-4 flex items-center justify-between">
                 <span class="text-[10px] font-bold tracking-widest">PRO_JERSEY</span>
                 <div class="flex gap-2">
-                  <button class="jersey-color w-6 h-6 rounded-full bg-blue-500 border border-white/20"
+                  <button class="jersey-color w-6 h-6 rounded-full border border-white/20" title="Blue"
                     style="background-color: #3b82f6"></button>
-                  <button class="jersey-color w-6 h-6 rounded-full bg-red-500 border border-white/20"
+                  <button class="jersey-color w-6 h-6 rounded-full border border-white/20" title="Red"
                     style="background-color: #ef4444"></button>
-                  <button class="jersey-color w-6 h-6 rounded-full bg-purple-500 border border-white/20"
+                  <button class="jersey-color w-6 h-6 rounded-full border border-white/20" title="Purple"
                     style="background-color: #8b5cf6"></button>
                 </div>
               </div>
               <div class="glass-panel p-4 flex items-center justify-between">
                 <span class="text-[10px] font-bold tracking-widest">PRO_GLOVE</span>
                 <div class="flex gap-2">
-                  <button class="glove-color w-6 h-6 rounded-full bg-white border border-white/20"
+                  <button class="glove-color w-6 h-6 rounded-full border border-white/20" title="White"
                     style="background-color: #ffffff"></button>
-                  <button class="glove-color w-6 h-6 rounded-full bg-black border border-white/20"
+                  <button class="glove-color w-6 h-6 rounded-full border border-white/20" title="Black"
                     style="background-color: #000000"></button>
-                  <button class="glove-color w-6 h-6 rounded-full bg-yellow-500 border border-white/20"
+                  <button class="glove-color w-6 h-6 rounded-full border border-white/20" title="Yellow"
                     style="background-color: #eab308"></button>
                 </div>
               </div>

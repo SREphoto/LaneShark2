@@ -63,12 +63,19 @@ export class PhysicsEngine {
         // Apply hook acceleration to X (Sideways spin)
         newVel.x -= hookPotential * hookBite * dt;
 
-        // 3. Friction & Drag
-        const currentFriction = this.LANE_FRICTION * (1 - (oilDensity * 0.05));
-        newVel.z *= currentFriction;
-        newVel.x *= this.LANE_FRICTION;
+        // 3. Friction & Drag (Frame-rate independent)
+        const frictionBase = this.LANE_FRICTION * (1 - (oilDensity * 0.05));
+        const frictionFactor = Math.pow(frictionBase, dt * 60);
 
-        // 4. Update Position
+        newVel.z *= frictionFactor;
+        newVel.x *= frictionFactor;
+
+        // 4. Hook/Curve Influence
+        const curveForce = (stats.hook / 100) * 12000;
+        const curveBite = (1 - oilDensity) * 0.8;
+        newVel.x -= curveForce * curveBite * dt;
+
+        // 5. Update Position
         const newPos = {
             x: pos.x + newVel.x * dt,
             y: pos.y + newVel.y * dt,
