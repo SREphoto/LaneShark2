@@ -186,6 +186,11 @@ export class Engine {
 
             this.ballRot += (this.ballVel.z / 1000) * dt;
 
+            // Cinematic Camera Follow: Smoothly slide camera toward ball
+            // Only follow up to a certain point to keep pins in view
+            const targetCameraZ = Math.max(8000, this.ballPos.z + 5000);
+            this.world.cameraZ += (targetCameraZ - this.world.cameraZ) * 0.05;
+
             // Collision Detection with force threshold
             this.pins.forEach(pin => {
                 if (pin.state === 'STANDING') {
@@ -224,6 +229,7 @@ export class Engine {
             this.syncEquippedBall();
             this.ballPos = { x: 0, y: 0, z: 20000 };
             this.ballVel = { x: 0, y: 0, z: 0 };
+            this.world.cameraZ = 25000; // Reset camera
             const prompt = document.getElementById('ui-prompt');
             if (prompt) {
                 prompt.textContent = 'READY FOR NEXT FRAME';

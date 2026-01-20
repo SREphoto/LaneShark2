@@ -4,7 +4,7 @@ import { defineConfig, loadEnv } from 'vite';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: mode === 'production' ? '/LaneShark/' : '/',
+    base: mode === 'production' ? '/LaneShark2/' : '/',
     server: {
       port: 3036,
       host: '0.0.0.0',

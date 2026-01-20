@@ -33,28 +33,25 @@ export class Renderer {
         ctx.fillStyle = grad;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Cinematic Lane Rendering
-        const nearW = canvas.width * 0.45;
-        const farW = canvas.width * 0.08;
-        const horizonY = canvas.height * 0.38;
-        const baseY = canvas.height;
-        const cx = canvas.width / 2;
+        // Core Lane Dimensions (matching World constants)
+        const laneHalfWidth = 800;
+        const laneNearZ = 25000;
+        const laneFarZ = -5000;
+
+        // Project corners for dynamic perspective
+        const p1 = world.project({ x: -laneHalfWidth, y: 0, z: laneNearZ }, canvas);
+        const p2 = world.project({ x: laneHalfWidth, y: 0, z: laneNearZ }, canvas);
+        const p3 = world.project({ x: laneHalfWidth, y: 0, z: laneFarZ }, canvas);
+        const p4 = world.project({ x: -laneHalfWidth, y: 0, z: laneFarZ }, canvas);
 
         ctx.save();
 
-        // Floor Reflection Layer
-        const floorGrad = ctx.createLinearGradient(0, horizonY, 0, baseY);
-        floorGrad.addColorStop(0, '#1e1b4b');
-        floorGrad.addColorStop(1, '#0f172a');
-        ctx.fillStyle = floorGrad;
+        // 1. Gutter / Floor Layer
+        ctx.fillStyle = '#020617';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Lane Shadow/Glow
-        ctx.shadowBlur = 60;
-        ctx.shadowColor = 'rgba(0,0,0,1)';
-
-        // Wood Lane Geometry
-        const laneGrad = ctx.createLinearGradient(0, baseY, 0, horizonY);
+        // 2. Wood Lane Geometry
+        const laneGrad = ctx.createLinearGradient(0, p1.y, 0, p3.y);
         laneGrad.addColorStop(0, '#78350f');
         laneGrad.addColorStop(0.3, '#b45309');
         laneGrad.addColorStop(0.8, '#451a03');
@@ -62,15 +59,15 @@ export class Renderer {
 
         ctx.fillStyle = laneGrad;
         ctx.beginPath();
-        ctx.moveTo(cx - farW, horizonY);
-        ctx.lineTo(cx + farW, horizonY);
-        ctx.lineTo(cx + nearW, baseY);
-        ctx.lineTo(cx - nearW, baseY);
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.lineTo(p3.x, p3.y);
+        ctx.lineTo(p4.x, p4.y);
         ctx.closePath();
         ctx.fill();
 
-        // Polish / Specular Overlay
-        const polish = ctx.createLinearGradient(0, horizonY, 0, baseY);
+        // 3. Polish / Specular Overlay
+        const polish = ctx.createLinearGradient(0, p1.y, 0, p3.y);
         polish.addColorStop(0, 'rgba(255,255,255,0.08)');
         polish.addColorStop(0.2, 'rgba(255,255,255,0.12)');
         polish.addColorStop(0.8, 'rgba(255,255,255,0)');

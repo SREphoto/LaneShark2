@@ -13,23 +13,25 @@ export class World {
     // Viewport Params
     private horizon = 0.1;
     private fov = 60;
+    public cameraZ = 25000; // Default camera distance
 
     public project(p: Point3D, canvas: HTMLCanvasElement): Point2D {
         const cx = canvas.width / 2;
         const cy = canvas.height / 2;
 
         // Perspective factor
-        // Z is distance from camera (0 is at camera, higher is further)
+        // Z is distance from camera
         const zNear = 500;
-        const zFar = 30000;
+        const zFar = 35000;
 
-        // Normalized depth (0 to 1)
-        const depth = (p.z - zNear) / (zFar - zNear);
-        const scale = 1 / (1 + depth * 10);
+        // Calculate depth relative to camera
+        const relativeZ = this.cameraZ - p.z;
+        const depth = Math.max(0, (relativeZ - zNear) / (zFar - zNear));
+        const scale = 1 / (1 + depth * 15);
 
         const px = cx + (p.x * scale);
-        // Inverse Y: Near is bottom, Far is top
-        const py = cy + (p.y * scale) + (depth * 200);
+        // Near is bottom, Far is top (roughly)
+        const py = cy + (p.y * scale) + (depth * 300);
 
         return { x: px, y: py, scale };
     }
