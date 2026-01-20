@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHARK_OS // ASSET FORGE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --neon-blue: #0fbcf9;
+            --neon-purple: #8b5cf6;
+            --deep-bg: #050505;
+        }
+
+        body {
+            background-color: var(--deep-bg);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+        }
+
+        .neon-border:hover {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(15, 188, 249, 0.2);
+        }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #fff, #555, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-8 min-h-screen">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="flex justify-between items-end mb-12 border-b border-white/10 pb-6">
+            <div>
+                <h1 class="font-display font-black text-4xl tracking-tighter shimmer-text">ASSET <span
+                        class="text-purple-500">FORGE</span></h1>
+                <p class="text-white/40 text-xs tracking-[0.3em] mt-2 uppercase">Core Graphics Request Dashboard // v2.0
+                </p>
+            </div>
+            <div class="text-right">
+                <span class="text-[10px] font-display text-blue-400">STATUS: AWAITING_INPUT</span>
+            </div>
+        </header>
+
+        <!-- Instructions -->
+        <div class="glass-panel p-6 mb-12 border-l-4 border-blue-500">
+            <h3 class="font-display font-bold text-sm mb-2 text-blue-400">TRANSMISSION INSTRUCTIONS</h3>
+            <p class="text-sm text-white/60 leading-relaxed">
+                Generate the following assets using Midjourney. Once ready, save them directly to the <code
+                    class="bg-white/10 px-2 py-1 rounded">public/assets/</code> directory in the project.
+                The engine will detect and live-load them into the simulation.
+            </p>
+        </div>
+
+        <!-- Request Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Item 1: The Ball -->
+            <div class="glass-panel p-8 neon-border transition-all group">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-[10px] font-display text-purple-500">ASSET_ID: 001</span>
+                    <span class="px-2 py-1 bg-purple-500/20 text-purple-400 text-[10px] rounded">CRITICAL</span>
+                </div>
+                <h2 class="text-2xl font-bold mb-4">Professional Bowling Ball Sprite Sheet</h2>
+                <div class="space-y-4">
+                    <p class="text-sm text-white/50">Details: 2x2 grid of high-fidelity bowling balls. Deep swirls,
+                        glossy reflections, ultra-high detail.</p>
+                    <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                        <span class="text-[10px] text-white/30 uppercase block mb-2">MIDJOURNEY PROMPT</span>
+                        <code class="text-xs text-blue-200">
+                            A high-quality 2D sprite sheet for a professional bowling ball. Includes 4 variations: deep royal blue, ruby red, emerald green, and onyx black marble. Each ball has a realistic glossy finish with high-contrast sharp specular reflections and a slight 'swirl' texture. Isolated on a transparent background, clean edges, 512x512 grid, 8k resolution, cinematic lighting --v 6.0
+                        </code>
+                    </div>
+                    <button
+                        class="w-full py-3 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-bold tracking-widest transition-all">TARGET:
+                        public/assets/ball_sprites.png</button>
+                </div>
+            </div>
+
+            <!-- Item 2: The Pins -->
+            <div class="glass-panel p-8 neon-border transition-all group">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-[10px] font-display text-blue-500">ASSET_ID: 002</span>
+                    <span class="px-2 py-1 bg-blue-500/20 text-blue-400 text-[10px] rounded">CRITICAL</span>
+                </div>
+                <h2 class="text-2xl font-bold mb-4">Pro Pin Animation States</h2>
+                <div class="space-y-4">
+                    <p class="text-sm text-white/50">Details: Sprite sheet containing standing, wobbling, and fallen
+                        states for pins.</p>
+                    <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                        <span class="text-[10px] text-white/30 uppercase block mb-2">MIDJOURNEY PROMPT</span>
+                        <code class="text-xs text-blue-200">
+                            A high-quality 2D sprite sheet for professional bowling pins. Includes 3 states: standing upright, wobbling at a 45 degree angle, and knocked over/lying flat. The pins are classic white with two bright red stripes on the neck, a high-gloss plastic finish, and soft realistic ambient occlusion shadows. Isolated on a transparent background, 512x512 grid, hyper-realistic, photorealistic textures --v 6.0
+                        </code>
+                    </div>
+                    <button
+                        class="w-full py-3 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-bold tracking-widest transition-all">TARGET:
+                        public/assets/pin_sprites.png</button>
+                </div>
+            </div>
+
+            <!-- Item 3: The Lane -->
+            <div class="glass-panel p-8 neon-border transition-all group">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-[10px] font-display text-yellow-500">ASSET_ID: 003</span>
+                    <span class="px-2 py-1 bg-yellow-500/20 text-yellow-400 text-[10px] rounded">OPTIONAL</span>
+                </div>
+                <h2 class="text-2xl font-bold mb-4">Maple Wood Lane Texture</h2>
+                <div class="space-y-4">
+                    <p class="text-sm text-white/50">Details: High-res seamless wood grain for the lane surface.</p>
+                    <div class="bg-black/40 p-4 rounded-xl border border-white/5">
+                        <span class="text-[10px] text-white/30 uppercase block mb-2">MIDJOURNEY PROMPT</span>
+                        <code class="text-xs text-blue-200">
+                            A seamless top-down texture of a professional bowling lane made of light maple wood. High gloss finish with subtle vertical board lines. Minimalist, clean, luxury sports aesthetic, soft overhead studio lighting, 8k --v 6.0
+                        </code>
+                    </div>
+                    <button
+                        class="w-full py-3 bg-white/5 hover:bg-white/10 rounded-lg text-xs font-bold tracking-widest transition-all">TARGET:
+                        public/assets/lane_texture.jpg</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
